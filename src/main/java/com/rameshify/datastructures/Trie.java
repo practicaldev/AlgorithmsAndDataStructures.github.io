@@ -66,6 +66,20 @@ public class Trie {
 		return something.toLowerCase();
 	}
 
+	public int getPrefixCount(String entry) {
+		TrieNode current = root;
+		for (int index = 0; index < entry.length(); index++) {
+			char c = entry.charAt(index);
+			if (current.children[getCharIndex(c)] == null) {
+				return 0;
+			}
+			current = current.children[getCharIndex(c)];
+		}
+		return current.wordCount;
+	}
+	private int getCharIndex(char c) {
+		return c - 'a';
+	}
 	public static void main(String[] args) {
 		Trie trie = new Trie();
 		trie.insert("app");

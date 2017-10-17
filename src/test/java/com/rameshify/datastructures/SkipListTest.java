@@ -1,7 +1,7 @@
 package com.rameshify.datastructures;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SkipListTest {
 
@@ -9,7 +9,7 @@ public class SkipListTest {
 	private SkipList<Integer> linkedList;
 
 
-	@Before
+	@BeforeEach
 	public void setUp(){
 		linkedList = new SkipList<>();
 		linkedList.add(1);

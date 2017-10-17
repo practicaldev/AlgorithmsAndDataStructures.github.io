@@ -3,42 +3,36 @@
  */
 package com.rameshify.datastructures;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.*;
 
 /**
  * @author u121433
  *
  */
 
-@FixMethodOrder(MethodSorters.JVM)
+//@FixMethodOrder(MethodSorters.JVM)
 public class TrieTest {
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
 	}
 
 	private Trie trie;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		trie = new Trie();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 	}
 
@@ -59,7 +53,7 @@ public class TrieTest {
 		trie.insert("aaa");
 		trie.insert("aaaa");
 		trie.insert("aaaaa");
-		List<String> find = trie.lookup("a");
+		List<String> find = trie.search("a");
 		System.out.println(find);
 		assertNotNull(find);
 	}

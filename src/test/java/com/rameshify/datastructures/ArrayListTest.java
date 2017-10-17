@@ -1,31 +1,28 @@
 package com.rameshify.datastructures;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 public class ArrayListTest {
 
 	List<Integer> list;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		list = new ArrayList<>();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 	}
 
@@ -44,7 +41,13 @@ public class ArrayListTest {
 
 	@Test
 	public void testGet() {
+		assertThrows(ArrayIndexOutOfBoundsException.class, ()->{
+			list.get(0);
+		});
 		list.add(1);
+		assertThrows(ArrayIndexOutOfBoundsException.class, ()->{
+			list.get(1);
+		});
 		assertEquals((Integer) 1, list.get(0));
 		list.add(2);
 		assertEquals((Integer) 2, list.get(1));
@@ -64,13 +67,6 @@ public class ArrayListTest {
 		assertEquals((Integer) 9, list.get(8));
 		list.add(10);
 		assertEquals((Integer) 10, list.get(9));
-	}
-
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
-	public void testGetException() {
-		assertEquals((Integer) 1, list.get(0));
-		list.add(1);
-		assertEquals((Integer) 2, list.get(1));
 	}
 
 	@Test
@@ -116,11 +112,9 @@ public class ArrayListTest {
 		assertEquals((Integer) 3, list.remove());
 		assertEquals((Integer) 2, list.remove());
 		assertEquals((Integer) 1, list.remove());
-	}
-
-	@Test(expected = IllegalStateException.class)
-	public void testRemoveException() {
-		assertEquals((Integer) 12, list.remove());
+		assertThrows(IllegalStateException.class, ()->{
+			list.remove();
+		});
 	}
 
 }
