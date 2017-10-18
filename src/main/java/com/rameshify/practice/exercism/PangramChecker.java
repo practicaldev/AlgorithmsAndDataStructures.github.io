@@ -1,38 +1,27 @@
 package com.rameshify.practice.exercism;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class PangramChecker {
 
+    public static final int ALPHABETS_LENGTH = 26;
+
     public boolean isPangram(String input) {
-        // Null or Empty? Not a Pangram.
+        /* Null or Empty? Not a Pangram. */
         if (input == null || input.length() == 0) {
             return false;
         }
-        //we must find atleast one from these
-        char[] alphabetz = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-        // Special cases (including digits)
-        String[] specialz = {" ", "\"", ".", "\\d+"};
-        //
-        String allLowercase = input.toLowerCase();
-        //Iterate over alphabets and replace one at a time
-        for (char aChar : alphabetz) {
-            // record length before replace
-            int preLength = allLowercase.length();
-            // perform replace
-            allLowercase = allLowercase.replace("" + aChar, "");
-            // record length after replace
-            int postLength = allLowercase.length();
-            // if length before and after are equal, then we didn't find a match. Return false (not a Pangram).
-            if (preLength == postLength) {
-                return false;
+        /* Lowercase all */
+        input = input.toLowerCase();
+        /* store used chars */
+        Set<Character> usedChars = new HashSet<>();
+        for (char oneChar : input.toCharArray()) {
+            if (Character.isLetter(oneChar)) {
+                usedChars.add(oneChar);
             }
         }
-        for (String nonAlpha : specialz) {
-            int preReplace = allLowercase.length();
-            //nothing to replace
-            if (preReplace == 0) break;
-            allLowercase = allLowercase.replaceAll(nonAlpha, "");
-        }
-        // if nothing left, then its a Pangram
-        return allLowercase.isEmpty() ? true : false;
+        /* if we used all alphabets then its a Pangram */
+        return usedChars.size() == ALPHABETS_LENGTH ? true : false;
     }
 }
