@@ -7,7 +7,7 @@ public class PermCheck {
         System.out.println(new PermCheck().solution(new int[]{4, 1, 3, 2}));
     }
 
-    int solution(int A[]) {
+    public int solution(int A[]) {
         boolean notAPerm = false;
 
         for (int i = 0; i < A.length; i++) {
